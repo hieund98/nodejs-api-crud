@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my application." });
 });
-
+require("dotenv").config({ override: true, debug: true })
 require("./app/routes/product.routes.js")(app);
-
+require("./app/routes/shipfee.routes.js")(app);
 require("./app/routes/tutorial.routes.js")(app);
 
 // set port, listen for requests
@@ -30,3 +30,4 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+console.log(process.env.DB_HOST);

@@ -1,12 +1,11 @@
 const product = require("../models/product.model.js");
+const validateRequest = require("../requests/validateRequest");
 
 // Create and Save a new product
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
+  if (!validateRequest.validated(req, res)) {
+    return;
   }
 
   // Create a product

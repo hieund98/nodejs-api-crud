@@ -1,11 +1,15 @@
+const {productRequest} = require("../requests/productRequest");
+const product = require("../controllers/product.controller");
 module.exports = app => {
   const product = require("../controllers/product.controller.js");
 
   var router = require("express").Router();
 
   // Create a new Product
-  router.post("/", product.create);
-
+  router.post("/", productRequest.store(),
+      (req, res) => {
+        return product.create(req, res)
+  })
   // Retrieve all Products
   router.get("/", product.findAll);
 
@@ -13,8 +17,10 @@ module.exports = app => {
   router.get("/:id", product.findOne);
 
   // Update a Product with id
-  router.put("/:id", product.update);
-
+  router.put("/:id",  productRequest.update(),
+      (req, res) => {
+        return product.update(req, res)
+      })
   // Delete a Product with id
   router.delete("/:id", product.delete);
 
