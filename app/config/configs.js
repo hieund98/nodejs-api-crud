@@ -130,10 +130,6 @@ module.exports = {
             }
         }
     },
-    recaptcha: {
-        host: 'https://google.com/recaptcha/api/siteverify',
-        secret: process.env.RECAPTCHA_SECRET || '6LecOucfAAAAALi5G3oP8tFlXDwFVOVgTMPpZ9_B',
-    },
     sentry: {
         enabled: process.env.SENTRY_ENABLED === 'true',
         dns: process.env.SENTRY_DNS || null,
