@@ -1,5 +1,7 @@
 const {productRequest} = require("../requests/productRequest");
 const product = require("../controllers/product.controller");
+const auth = require("../middlewares/auth")();
+
 module.exports = app => {
   const product = require("../controllers/product.controller.js");
 
@@ -11,7 +13,7 @@ module.exports = app => {
         return product.create(req, res)
   })
   // Retrieve all Products
-  router.get("/", product.findAll);
+  router.get("/", auth.authenticate(), product.findAll);
 
   // Retrieve a single Product with id
   router.get("/:id", product.findOne);

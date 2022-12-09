@@ -1,6 +1,10 @@
 require('dotenv').config()
 
 module.exports = {
+    jwtSecret: 'xxx',
+    jwtSession: {
+        session: false
+    },
     app: {
         server:  process.env.APP_SERVER || 'Unknown App',
         name: process.env.APP_NAME || 'App name',

@@ -1,7 +1,7 @@
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
 const cors = require("cors");
-
+const passport = require("passport");
 const app = express();
 
 var corsOptions = {
@@ -24,7 +24,7 @@ require("dotenv").config({ override: true, debug: true })
 require("./app/routes/product.routes.js")(app);
 require("./app/routes/shipfee.routes.js")(app);
 require("./app/routes/tutorial.routes.js")(app);
-
+require("./app/routes/auth.routes.js")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
