@@ -13,7 +13,7 @@ const  params = {
 module.exports = function() {
   const  strategy = new Strategy(params, function(payload, done) {
     const  user = userService.findById(payload.id).then(function(user) {
-      if(payload.expire !== Date.now()) {
+      if(payload.expire <= Date.now()) {
         return done(null, false, {
           message: "Token expired"
         });

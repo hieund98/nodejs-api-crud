@@ -7,7 +7,7 @@ module.exports = app => {
     const router = require("express").Router();
 
     // Login with username and password
-    router.post("/login", passport.initialize("jwt") ,
+    router.post("/login",
         (req, res) => {
             return auth.login(req, res)
         })
