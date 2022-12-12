@@ -3,8 +3,16 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const app = express();
+const { worker } = require('./app/mail/worker')
 
-var corsOptions = {
+worker.on('completed', job => console.info(
+    `Completed job ${job.id} successfully, sent email to ${job.data.to}`,
+))
+worker.on('failed', (job, err) => console.info(
+    `Failed job ${job.id} with ${err}`,
+))
+
+const corsOptions = {
   origin: "http://localhost:8081"
 };
 
@@ -31,4 +39,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
 console.log(process.env.DB_HOST);
